@@ -11,79 +11,48 @@
 # When you're ready to continue playing the game, though, stick to
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
-# 
-echo
-if ! grep  --quiet --only-matching diamonds <<< $I; then
-    cat << EOF
-You have found a stash of **diamonds**!  They are old and worn
-with age,  but they still gleam in the magickal light
-eminating from your eyes.
+#
+cat << EOF 
+You have found a potion bottle of swirling
+green liquid. Do you want to drink it?
 
-Prefix this item to your inventory:
+EOF
+read RESP
 
-export I=diamonds,\$I
+if [ "$RESP" = "y" -o "$RESP" = "Y" ]; then
+   cat << EOF 
+The taste of a rustic green plant fills your mouth.  It
+warms and strengthens you.
 
-Remember, you can check your inventory:
+Create a variable for your health points (HP).  You have
+15HP:
 
-echo \$I
+export HP=15
 
 EOF
 else
-    echo "This treasure has already been taken."
-    echo
+    cat << EOF
+You weren't born yestermorn.  This potion is probably
+poison.  
+
+Create a variable for your health points (HP).  You have
+10HP:
+
+export HP=10
+
+EOF
+
 fi
 
+cat << EOF
+You can check your health at any time:
 
+echo \$HP
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+EOF
+mv ../../.chapel ../../chapel 2>/dev/null
+mv ../../.vault ../../vault 2>/dev/null
+mv ../../.scrap ../../scrap 2>/dev/null
 
 
 
@@ -365,5 +334,5 @@ fi
 # it means they are applications.
 # Try this:
 #
-# ./treasure
+# ./potion
 
